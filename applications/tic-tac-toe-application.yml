@@ -1,0 +1,32 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: tic-tac-toe-bestpractice
+  namespace: argocd
+
+spec:
+  project: default
+
+  sources:
+    - repoURL: https://github.com/Honeyshah624/Tic-tac-toe.git
+      targetRevision: HEAD
+      path: tic-tac-toe-chart
+      helm:
+        releaseName: tic-tac-toe-bestpractice
+        valueFiles:
+          - $values/clusters/local/tic-tac-toe-values.yml
+
+    - repoURL: https://github.com/Honeyshah624/APP_DEPLOY.git
+      targetRevision: HEAD
+      ref: values
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: tic-tac-toe-bestpractice
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
