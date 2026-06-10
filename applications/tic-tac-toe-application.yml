@@ -16,7 +16,7 @@ spec:
         valueFiles:
           - $values/clusters/local/tic-tac-toe-values.yml
 
-    - repoURL: https://github.com/Honeyshah624/APP_DEPLOY.git
+    - repoURL: https://github.com/Honeyshah624/argocd_app_deploy.git
       targetRevision: HEAD
       ref: values
 
