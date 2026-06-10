@@ -1,6 +1,18 @@
 replicaCount: 1
 
+image:
+  repository: nginx
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 80
+
 ingress:
   enabled: true
   className: nginx
   host: tic-tac-toe-bestpractice.local
+  path: /
+  pathType: Prefix
